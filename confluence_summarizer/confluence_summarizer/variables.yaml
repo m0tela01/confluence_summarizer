@@ -1,0 +1,82 @@
+# Confluence API Configuration
+confluence:
+  # API version and content type settings
+  api_version: "v2"
+  content_type: "storage"
+  
+  # Parameters to expand in API responses
+  expand_params:
+    - "body.storage"
+    - "version"
+    - "ancestors"
+    - "children.page"
+  
+  # Cache time-to-live in seconds (1 hour)
+  cache_ttl: 3600
+
+# Document Processing Configuration
+document_processing:
+  # Chunk size and overlap settings for text processing
+  # These values are optimized for GPT-3.5's 16K context window
+  # For GPT-4 (128K context), you can increase max_chunk_size to 8000
+  max_chunk_size: 2000  # Maximum tokens per chunk (roughly 1500 words)
+  chunk_overlap: 400    # Overlap between chunks (20% of chunk_size)
+  
+  # HTML content cleanup settings
+  html_cleanup:
+    # Remove unnecessary HTML elements
+    remove_scripts: true
+    remove_styles: true
+    remove_comments: true
+    
+    # Content preservation settings
+    preserve_tables: true
+    preserve_images: true
+    image_alt_text: true
+
+# LLM Configuration
+llm:
+  # Response generation parameters
+  temperature: 0.7      # Controls randomness (0.0 to 1.0)
+  max_tokens: 2000      # Maximum tokens in response
+  top_p: 0.95          # Nucleus sampling parameter
+  frequency_penalty: 0.0  # Penalize frequent tokens
+  presence_penalty: 0.0   # Penalize repeated tokens
+
+# Persona Prompts
+personas:
+  # Technical documentation expert persona
+  technical:
+    system_prompt: |
+      You are a technical documentation expert. Your task is to create a detailed technical summary that:
+      - Focuses on implementation details and technical specifications
+      - Includes relevant code examples and technical patterns
+      - Highlights architectural decisions and their rationale
+      - Maintains technical accuracy while being comprehensive
+      - Uses appropriate technical terminology
+      
+      Format the summary with clear sections and bullet points where appropriate.
+
+  # Business analyst persona
+  business:
+    system_prompt: |
+      You are a business analyst. Your task is to create a business-focused summary that:
+      - Emphasizes business value and impact
+      - Highlights key benefits and ROI
+      - Focuses on stakeholder-relevant information
+      - Uses clear, non-technical language
+      - Identifies business risks and opportunities
+      
+      Format the summary with clear sections and bullet points where appropriate.
+
+  # Technical writer persona
+  simplified:
+    system_prompt: |
+      You are a technical writer specializing in clear communication. Your task is to create an easy-to-understand summary that:
+      - Uses simple, clear language
+      - Avoids technical jargon where possible
+      - Explains complex concepts in basic terms
+      - Focuses on key points and main ideas
+      - Is accessible to non-technical readers
+      
+      Format the summary with clear sections and bullet points where appropriate. 

@@ -1,0 +1,27 @@
+# Azure OpenAI Configuration
+azure_openai:
+  api_key: ${AZURE_OPENAI_API_KEY}
+  api_version: "2024-02-15-preview"
+  deployment_name: ${AZURE_OPENAI_DEPLOYMENT_NAME}
+  endpoint: ${AZURE_OPENAI_ENDPOINT}
+
+# Confluence Configuration
+confluence:
+  url: ${CONFLUENCE_URL}
+  username: ${CONFLUENCE_USERNAME}
+  api_token: ${CONFLUENCE_API_TOKEN}
+  space_key: ${CONFLUENCE_SPACE_KEY}
+
+# Summary Configuration
+summary:
+  default_persona: "technical"
+  include_children: true
+  export_dir: "summaries"
+  max_retries: 3
+  timeout: 300
+
+# Logging Configuration
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "confluence_summarizer.log" 
